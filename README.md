@@ -1,6 +1,6 @@
 
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>NAME : SHALINI K</H3>
+<H3>REGISTER NO : 212222240095</H3>
 <H3>EX. NO.4</H3>
 <H3>DATE:</H3>
 <H1 ALIGN =CENTER>Implementation of MLP with Backpropagation for Multiclassification</H1>
@@ -116,11 +116,59 @@ Normalize our dataset.
 
 <H3>Program:</H3> 
 
-Insert your code here
+```PY
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+```
+
+```PY
+url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+arr = ['SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth', 'Species']
+df = pd.read_csv(url, names=arr)
+print(df.head())
+```
+
+```PY
+a = df.iloc[:, 0:4]
+b = df.select_dtypes(include=[object])
+b = df.iloc[:,4:5]
+```
+
+```PY
+training_a, testing_a, training_b, testing_b = train_test_split(a, b, test_size = 0.25)
+myscaler = StandardScaler()
+myscaler.fit(training_a)
+training_a = myscaler.transform(training_a)
+testing_a = myscaler.transform(testing_a)
+m1 = MLPClassifier(hidden_layer_sizes=(12, 13, 14), activation='relu', solver='adam', max_iter=2500)
+m1.fit(training_a, training_b.values.ravel())
+predicted_values = m1.predict(testing_a)
+```
+
+```PY
+print("SHALINI K 212222240095")
+print(confusion_matrix(testing_b,predicted_values))
+```
+
+```PY
+print("SHALINI K 212222240095")
+print(classification_report(testing_b,predicted_values))
+```
 
 <H3>Output:</H3>
 
-Show your results here
+![image](https://github.com/shalinikannan23/Ex-4-NN/assets/118656529/ab21c58d-3c2c-45f5-8bba-abc116d89bbf)
+
+
+![image](https://github.com/shalinikannan23/Ex-4-NN/assets/118656529/3a058ace-c0a5-4dac-9307-856f0334a44a)
+
+![image](https://github.com/shalinikannan23/Ex-4-NN/assets/118656529/b22c2a08-973d-49d1-af06-00ebab69e811)
+
+
 
 <H3>Result:</H3>
 Thus, MLP is implemented for multi-classification using python.
